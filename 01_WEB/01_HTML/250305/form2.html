@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>GET 방식 요청</h1>
+    <form
+      action="https://port-0-tetz-night-back-m5yo5gmx92cc34bc.sel4.cloudtype.app/form"
+      method="GET"
+    >
+      <div>
+        <label for="id">도전자 : </label>
+        <input type="text" id="id" name="id" required />
+      </div>
+      <div>
+        <label for="msg"> 한 줄 웃기기 도전 : </label>
+        <input type="text" id="msg" name="msg" required />
+      </div>
+      <button type="submit">GET 방식으로 전송</button>
+      <!-- submit은 속해있는 form에 있는 것을 전송한다.  -->
+    </form>
+  </body>
+</html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>POST 방식 요청</h1>
+
+    <form
+      action="https://port-0-tetz-night-back-m5yo5gmx92cc34bc.sel4.cloudtype.app.form"
+      method="POST"
+    >
+      <div>
+        <label for="id">도전자 : </label>
+        <input type="text" id="id" name="id" required />
+      </div>
+      <div>
+        <label for="msg"> 한 줄 웃기기 도전 : </label>
+        <input type="text" id="msg" name="msg" required />
+      </div>
+      <button type="submit">POST 방식으로 전송</button>
+    </form>
+    <br />
+    <hr />
+
+    <!-- <h1>강아지 vs 고양이 투표</h1>
+    <form action="http://10.10.0.224:3000/taste" method="post">
+      <h3>당신은 어떤 동물을 더 좋아하나요?</h3>
+      <label>
+        <input type="radio" name="animal" value="dog" required /> 강아지
+      </label>
+      <label>
+        <input type="radio" name="animal" value="cat" required /> 고양이
+      </label>
+      <div style="margin-top: 15px">
+        <button type="submit">투표하기</button>
+      </div>
+    </form> -->
+  </body>
+</html>

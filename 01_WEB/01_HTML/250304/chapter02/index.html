@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!-- <script defer>
+      // 안되는 코드
+      const headerEl = document.getElementById('headerEl');
+      console.log(headerEl);
+      // 출력되지 않는다. JavaScript 코드가 HTML 요소가 로드되기 전에 실행되기 때문에 출력되기 때문에.(바닐라JS는 호이스팅 지원 X)
+      // script 위치는 바디에 넣지않고 헤드에 넣는 것이 맞다 왜? JS 쓴 것을 확인해야 하므로.
+      // defer는 src 있을 때만 사용가능.
+    </script> -->
+    <script defer src="./main.js">
+      //되는 코드
+      //외부 파일(main.js)에서는 <script defer src="">가 HTML 파싱 이후 실행되므로 정상적으로 요소를 가져올 수 있음.
+      <!-- 스크립트(<script>) 태그를 만나면?
+      일반적인 <script>는 즉시 실행되므로 HTML 파싱이 잠시 멈춤.
+      하지만 defer가 있으면 HTML 파싱이 끝난 후 실행됨. -->
+    </script>
+  </head>
+  <body>
+    <h1 id="headerEl">Hello HTML5</h1>
+  </body>
+</html>
