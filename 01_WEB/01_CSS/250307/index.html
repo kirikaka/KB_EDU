@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 3000px;
+      }
+
+      .parent {
+        width: 100px;
+        height: 80px;
+        background-color: dodgerblue;
+        position: relative;
+        padding: 8px;
+      }
+
+      .child1 {
+        width: 40px;
+        height: 30px;
+        background-color: yellow;
+        z-index: 999999999999999;
+      }
+
+      .child2 {
+        width: 60px;
+        height: 40px;
+        background-color: orange;
+        z-index: 1;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+      }
+
+      .child3 {
+        position: absolute;
+        bottom: -30px;
+        right: -10px;
+        z-index: 2;
+
+        width: 40px;
+        height: 70px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="child1"></div>
+      <div class="child2"></div>
+      <div class="child3"></div>
+    </div>
+  </body>
+</html>

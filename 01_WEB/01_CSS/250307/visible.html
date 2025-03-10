@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        cursor: pointer;
+        display: inline-block;
+      }
+      .opacity {
+        background-color: aqua;
+        opacity: 1;
+      }
+      .opacity:hover {
+        opacity: 0;
+        transition-duration: 1s;
+      }
+      .visibility {
+        background-color: greenyellow;
+        visibility: visible;
+      }
+      .visibility:hover {
+        visibility: hidden;
+      }
+      .display {
+        background-color: dodgerblue;
+      }
+      .display:hover {
+        display: none;
+      }
+      .last {
+        background-color: violet;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="opacity">opacity</div>
+    <div class="visibility">visibility</div>
+    <div class="display">display</div>
+    <div class="last">last</div>
+  </body>
+</html>
