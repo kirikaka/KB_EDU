@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="addTodo()">할 일 추가</button>
+    <!-- <button id="btn">할 일 추가</button> -->
+    <input type="text" id="input" placeholder="할일 입력" />
+    <ul id="todolist"></ul>
+
+    <script>
+      const list = document.querySelector('#todolist');
+      const input = document.querySelector('#input');
+
+      function addTodo() {
+        const content = input.value;
+        if (content === ``) {
+          return alert('할 일 입력하세요');
+        }
+        const liContent = document.createElement('li');
+        liContent.textContent = content;
+
+        liContent.addEventListener('click', (e) => {
+          e.target.remove();
+        });
+
+        input.value = ``;
+        list.appendChild(liContent);
+      }
+    </script>
+  </body>
+</html>
