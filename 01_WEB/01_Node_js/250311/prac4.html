@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">오늘의 날짜</button>
+    <script>
+      const btnEL = document.querySelector('#btn');
+      btnEL.addEventListener('click', () => {
+        const weather = new Date();
+        console.log(`Today's weather is : ${weather}`);
+      });
+    </script>
+  </body>
+</html>

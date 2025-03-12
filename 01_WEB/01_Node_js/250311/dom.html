@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">버튼</button>
+    <script>
+      function test() {
+        alert('버튼 누름');
+      }
+
+      const btnEl = document.querySelector('#btn');
+      btnEl.addEventListener('click', function () {
+        alert('TEST');
+      }); //재사용할 일이 없으면 익명함수로 사용
+
+      btnEl.addEventListener('click', () => {
+        alert('TEST');
+      }); //화살표 함수
+    </script>
+  </body>
+</html>
