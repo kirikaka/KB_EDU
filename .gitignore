@@ -1,2 +1,2 @@
 #node_modules 있는건 무시
-/node_modules
+node_modules/
