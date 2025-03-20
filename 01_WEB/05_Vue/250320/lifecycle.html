@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Tetz's favorite food list</h1>
+      <button @click="fetchFood">Recieving data</button>
+      <ul>
+        <li v-for="(food,index) in foods" v-bind:key="index">{{food.food}}</li>
+      </ul>
+    </div>
+    <script>
+      const { createApp, ref } = Vue;
+      createApp({
+        data() {
+          return { foods: [] };
+        },
+        methods: {
+          async fetchFood() {
+            try {
+              const response = await fetch(
+                'https://port-0-tetz-night-back-m5yo5gmx92cc34bc.sel4.cloudtype.app/food/all'
+              );
+              this.foods = await response.json();
+            } catch (e) {
+              console.error(e);
+            }
+          },
+          async sendUserData() {
+            try {
+              const response = await fetch(
+                'https://port-0-tetz-night-back-m5yo5gmx92cc34bc.sel4.cloudtype.app/send'
+              );
+              console.log('data 전송완료');
+            } catch (e) {
+              console.error(e);
+            }
+          },
+        },
+        created() {
+          this.fetchFood();
+        },
+        unmounted() {
+          this.sendUserData();
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

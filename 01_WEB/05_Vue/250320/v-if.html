@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Today's fortune : {{luck}}</h1>
+      <h1 v-if="luck > 8">Today is fortune day. Buy some lottery</h1>
+      <h1 v-else-if="luck > 5">Today is lucky day.</h1>
+      <h1 v-else-if="luck > 3">Normal one</h1>
+      <h1 v-else="luck">fucked up</h1>
+    </div>
+    <script>
+      const { createApp, ref } = Vue;
+      createApp({
+        data() {
+          return {
+            luck: parseInt(Math.random() * 10),
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

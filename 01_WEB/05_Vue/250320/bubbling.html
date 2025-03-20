@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>데이터 기반</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app" style="background-color: skyblue">
+      <h1>count : {{ count }}</h1>
+      <div v-on:click="iDontWantToDiscount" style="background-color: orange">
+        <h1>안쪽</h1>
+        <button v-on:click.stop="discount">클릭!</button>
+      </div>
+      <h1>바깥쪽</h1>
+      <button v-on:click="discount">클릭!</button>
+    </div>
+  </body>
+  <script>
+    const vueApp = Vue.createApp({
+      name: 'App',
+      data() {
+        return { count: 10 };
+      },
+      methods: {
+        discount() {
+          this.count--;
+        },
+        iDontWantToDiscount() {
+          this.count--;
+        },
+      },
+    }).mount('#app');
+  </script>
+</html>
