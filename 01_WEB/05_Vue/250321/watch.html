@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Tetz's favorite food with Computed</h1>
+      <label for="category">Select Category : </label>
+      <select id="category" v-model="selctedCategory">
+        <option value="all">전체</option>
+        <option value="korean">한식</option>
+        <option value="japanese">일식</option>
+        <option value="chinese">중식</option>
+      </select>
+      <ul>
+        <li v-for="(food,index) in foods" :key="index">{{food.food}}</li>
+      </ul>
+    </div>
+    <script>
+      const { createApp, ref } = Vue;
+      createApp({
+        data() {
+          return {
+            foods: [],
+            selctedCategory: 'all',
+          };
+        },
+        methods: {
+          async fetchFoodsByCategory(category) {
+            try {
+              const response = await fetch(
+                `https://port-0-tetz-night-back-m5yo5gmx92cc34bc.sel4.cloudtype.app/food/${category}`
+              );
+              this.foods = await response.json();
+            } catch (e) {
+              console.log(e);
+            }
+          },
+        },
+        created() {
+          this.fetchFoodsByCategory(this.selctedCategory);
+        },
+
+        watch: {
+          selctedCategory(changeCategory) {
+            this.fetchFoodsByCategory(changeCategory);
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
