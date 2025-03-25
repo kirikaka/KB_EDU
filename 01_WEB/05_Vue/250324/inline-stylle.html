@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 :style="{backgroundColor,color}">
+        Vue 스타일3 - 여러 스타일적용 by 배열
+      </h1>
+      <h1 :style="{...backgroundStyle,...fontStyle}">
+        Vue 스타일3 - 여러 스타일적용 by 객체
+      </h1>
+    </div>
+    <script>
+      const { createApp, ref } = Vue;
+      createApp({
+        data() {
+          return {
+            backgroundStyle: {
+              backgroundColor: 'green',
+            },
+            fontStyle: {
+              color: 'red',
+            },
+
+            backgroundColor: '#ccc',
+            color: 'red',
+          };
+        },
+        methods: {},
+      }).mount('#app');
+    </script>
+  </body>
+</html>

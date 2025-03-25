@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      .bg-orange {
+        background-color: orange;
+      }
+      .font-white {
+        color: white;
+      }
+      .bg-skyblue {
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1 :class="myStyle">일반 스타일</h1>
+      <button v-on:click="toggleStyle">배경 토글</button>
+    </div>
+    <script>
+      const { createApp, ref } = Vue;
+      createApp({
+        data() {
+          return {
+            isOrange: true,
+          };
+        },
+        methods: {
+          toggleStyle() {
+            this.isOrange = !this.isOrange;
+          },
+        },
+        computed: {
+          myStyle() {
+            return this.isOrange ? 'bg-orange' : 'bg-skyblue';
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

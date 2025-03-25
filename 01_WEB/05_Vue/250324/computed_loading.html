@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      .spinner {
+        width: 40px;
+        height: 40px;
+        margin: 30px;
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid orange;
+        animation: spin 1s linear infinite;
+      }
+      .loading-bg {
+        background-color: aqua;
+      }
+      .success-bg {
+        background-color: blueviolet;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div :class="isLoading ? 'loading-bg':'success-bg'">
+        <h1>Tetz's favorite food with Computed</h1>
+        <label for="category">Select Category : </label>
+        <select id="category" v-model="selctedCategory">
+          <option value="all">전체</option>
+          <option value="korean">한식</option>
+          <option value="japanese">일식</option>
+          <option value="chinese">중식</option>
+        </select>
+        <div class="loading-container" v-if="isLoading">
+          <div class="spinner"></div>
+          <p>데이터 로딩 중....</p>
+        </div>
+        <ul v-else>
+          <li v-for="(food,index) in filteredFoods" :key="index">
+            {{food.food}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      const { createApp, ref } = Vue;
+      createApp({
+        data() {
+          return {
+            foods: [],
+            selctedCategory: 'all',
+            isLoading: true,
+          };
+        },
+        methods: {
+          async fetchFoods() {
+            this.isLoading = true;
+
+            try {
+              const response = await fetch(
+                'https://port-0-tetz-night-back-m5yo5gmx92cc34bc.sel4.cloudtype.app/food/all'
+              );
+              this.foods = await response.json();
+            } catch (e) {
+              console.log(e);
+            } finally {
+              this.isLoading = false;
+            }
+          },
+        },
+        created() {
+          this.fetchFoods();
+        },
+        computed: {
+          filteredFoods() {
+            if (this.selctedCategory == 'all') {
+              return this.foods;
+            }
+
+            return this.foods.filter((food, index) => {
+              return food.category === this.selctedCategory;
+            });
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
