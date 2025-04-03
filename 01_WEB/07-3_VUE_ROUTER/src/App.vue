@@ -14,6 +14,10 @@ const route = useRouter();
       <RouterLink to="/dynamic/happy">Happy</RouterLink>
       /
       <RouterLink to="/dynamic/exciting">Exciting</RouterLink>
+      /
+      <RouterLink to="/cors">CORS</RouterLink>
+      /
+      <RouterLink to="/ex-cors">CORS EX</RouterLink>
     </nav>
 
     <div>

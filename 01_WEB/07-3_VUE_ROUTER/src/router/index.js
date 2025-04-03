@@ -27,6 +27,16 @@ const router = createRouter({
         return import('@/pages/User.vue');
       },
     },
+    {
+      path: '/cors',
+      name: 'cors',
+      component: () => import('@/pages/CorsPage.vue'),
+    },
+    {
+      path: '/ex-cors',
+      name: 'exCors',
+      component: () => import('@/pages/CorsExPage.vue'),
+    },
 
     {
       path: '/:pathMatch(.*)*',
