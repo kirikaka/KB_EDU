@@ -1,6 +1,9 @@
 package stream;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class StreamBasic01 {
@@ -16,6 +19,51 @@ public class StreamBasic01 {
     // https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html
     public static void main(String[] args) {
         String[] strArray = {"abc", "bbb", "ccc", "abb", "bcc", "ddd"};
+        Stream<String> strStream = Stream.of(strArray); // 문자열 스트림 생성방법
+        
+        // forEach : 스트림을 반복하면서 Consumer를 호출하는 방법
+        // 단순 출력하는 방법
+        strStream.forEach(str -> System.out.print(str + ", "));
+        System.out.println();
+        // stream has already been operated upon or closed
+        // -> 스트림은 한번 사용하면 close 됨으로 재사용할수 없다!!
+//        strStream.forEach(System.out::println); // System.out.print 컨슈머 버전!
+
+        // 해결방법1 : Stream.of를 통해 계속 생성해서 사용하면 된다.
+        // -> 스트림을 새로 열때 마다 오버헤드는 존재한다. (메모리 + 변환 비용)
+        strStream = Stream.of(strArray);
+        strStream.forEach(str -> System.out.print(str + ", "));
+        System.out.println("\n--------------------------------------");
+
+        // 해결방법2 : Arrays나 List 스트림 활용
+        // Arrays.stream을 활용하거나 List.stream을 활용한다.
+        List<String> strList = new ArrayList<>(Arrays.asList(strArray));
+        strList.stream().forEach(str -> System.out.print(str + ", "));
+        strList.stream().forEach(str -> System.out.print(str + ", ")); // 2번해도 안죽는다!
+        System.out.println("\n--------------------------------------");
+        Arrays.stream(strArray).forEach(str -> System.out.print(str + ", "));
+        Arrays.stream(strArray).forEach(str -> System.out.print(str + ", "));
+        System.out.println("\n--------------------------------------");
+
+        // sorted : 스트림을 정렬하는 방법
+        System.out.println("스트림 정렬");
+        Stream.of(strArray).sorted().forEach(str -> System.out.print(str + ", "));
+        System.out.println();
+        Stream.of(strArray).sorted(Comparator.reverseOrder()).forEach(str -> System.out.print(str + ", "));
+        System.out.println("\n--------------------------------------");
+        
+        // map : 모든 인자를 조회 하면서 함수를 통해 값을 변경할때 사용, Function 필요!
+        System.out.println("대문자 변경");
+        Stream.of(strArray).map((str) -> str.toUpperCase()).forEach(str -> System.out.print(str + ", "));
+        Stream.of(strArray).map(String::toUpperCase).forEach(str -> System.out.print(str + ", "));
+        System.out.println("\n----------------------------------------");
+
+        // filter : 스트림에서 특정 조건에 해당되는 변수를 필터링할때 사용, Predicate 필요!
+        System.out.println("a 포함된 문자열 제거");
+//    잘못! : Stream.of(strArray).filter((str -> str.contains("a"))).forEach(str -> System.out.print(str + ", "));
+        Stream.of(strArray).filter((str -> !str.contains("a"))).forEach(str -> System.out.print(str + ", "));
+        System.out.println("\n----------------------------------------");
+
         // allMatch : 스트림의 모든 객체가 조건에 매칭되는지 확인하는 기능
         // anyMatch : 스트림의 특정 객체가 조건에 매칭되는지 확인하는 기능
         // noneMatch : allMatch 반대, 스트림의 모든 객체가 조건에 매칭되지 않는지 확인하는 기능
@@ -25,19 +73,36 @@ public class StreamBasic01 {
         System.out.println("noneMatch : " + Stream.of(strArray).noneMatch((str)-> str.contains("a")));
         System.out.println("---------------------------------------------");
 
+        // distinct : 중복을 제거하는 기능
         String[] strArray2 = {"aaa", "bbb", "bbb", "ccc", "ccc", "ccc"};
+        System.out.println("중복 제거");
+        Stream.of(strArray2).forEach(str -> System.out.print(str + ", "));
+        System.out.println();
+        Stream.of(strArray2).distinct().forEach(str -> System.out.print(str + ", "));
+        System.out.println();
+        System.out.println("-------------------------------------------------------");
+
+        // 복합 예제1) 대문자 변경 + 중복제거
+        System.out.println("대문자 변경 + 중복제거");
+        Stream.of(strArray2).distinct().map(String::toUpperCase).forEach(str -> System.out.print(str + ", "));
+//  연산이 더많은 문법 : Stream.of(strArray2).map(String::toUpperCase).distinct().forEach(str -> System.out.print(str + ", "));
+        System.out.println("\n-----------------------------------");
+
+        // 복합 예제2) 대문자 변경 + 중복제거 + 정렬
+        System.out.println("대문자 변경 + 중복제거 + 정렬");
+        Stream.of(strArray2).distinct().map(String::toUpperCase).sorted().forEach(str -> System.out.print(str + ", "));
+        System.out.println("\n-----------------------------------");
+
         Stream<String[]> strArrStrm2 = Stream.of(
                 new String[]{"abc", "bbb", "ccc"},
                 new String[]{"ABC", "bbb", "ddd"} );
 
         // 2차원 스트림을 만드는 가장 기본적인 방법
-        Stream<Stream<String>> strStream2 = strArrStrm2.map(Arrays::stream);
+		Stream<Stream<String>> strStream2 = strArrStrm2.map(Arrays::stream);
 
         // flatMap : 2차원을 1차원으로 바꾸는 메소드
         System.out.println("2차원 스트림을 1차원으로 변경");
         Stream<String> strStream3 = strArrStrm2.flatMap(Arrays::stream);
         strStream3.forEach(s -> System.out.print(s + ","));
-
     }
-
 }
