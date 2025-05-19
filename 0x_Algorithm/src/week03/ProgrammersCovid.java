@@ -53,27 +53,27 @@ public class ProgrammersCovid {
                     if(tables[nextRow][nextCol]=='X'){
                         continue;
                     }
-                    // 이전이 O이며 다음이 O이면 SKIP
+                    // 현재가 O이며 다음이 O이면 SKIP
                     if(tables[currRow][currCol]=='O' && tables[nextRow][nextCol]=='O' ){
                         continue;
                     }
-                    // 이전이 P이며 다음이 O이면 dist+1 하고 queue에 넣기
+                    // 현재가 P이며 다음이 O이면 dist+1 하고 queue에 넣기
                     if(tables[currRow][currCol]=='P' && tables[nextRow][nextCol]=='O'&& !visited[nextRow][nextCol]){
                         queue.add(new int[]{nextRow,nextCol});
                         visited[nextRow][nextCol]=true;
                         dist[nextRow][nextCol]=dist[currRow][currCol]+1;
                         continue;
                     }
-                    // 이전이 P이며 다음도 P면 dist+1하고 queue에 넣기
+                    // 현재가 P이며 다음도 P면 dist+1하고 queue에 넣기
                     if(tables[currRow][currCol]=='P' && tables[nextRow][nextCol]=='P' && !visited[nextRow][nextCol]){
                         queue.add(new int[]{nextRow,nextCol});
                         visited[nextRow][nextCol]=true;
-                        dist[nextRow][nextCol]=dist[currRow][currCol]+1;
+                        dist[nextRow][nextCol]=2;
                         result=false;
                         continue;
                     }
-                    //이전이 O인데 다음이 P이면 dist+1하고 queue에 넣기
-                    // 이전이 O일 경우는 P 다음에 O가 온 것이므로
+                    //현재가 O인데 다음이 P이면 dist+1하고 queue에 넣기
+                    // 현재가 O일 경우는 P 다음에 O가 온 것이므로
                     if(tables[currRow][currCol]=='O' && tables[nextRow][nextCol]=='P' && !visited[nextRow][nextCol]){
                         queue.add(new int[]{nextRow,nextCol});
                         visited[nextRow][nextCol]=true;
@@ -92,7 +92,7 @@ public class ProgrammersCovid {
     public static void main(String[] args) {
         String[][] places = {
                 {"POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"},
-                {"POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"},
+                {"POOPX", "OXPXP", "PXXXO", "OXXXX", "OOOPP"},
                 {"PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX"},
                 {"OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"},
                 {"PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"}

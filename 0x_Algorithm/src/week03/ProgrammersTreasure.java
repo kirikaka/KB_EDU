@@ -1,7 +1,19 @@
 package week03;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
+
+/* 보물을 찾는 방법
+0. 신발 사용 여부를 static으로 받는게 아니라.time에 같이 반영이 되어있어야 할것 같은데.
+   shoes라는 boolean 배열 생성해서
+1. BFS로 탐색해 나감.
+2. 함정을 만나면 일단 점프함?
+2-1. 신발을 안썻을때 함정을 만나면 점프해서 방향+2만큼 가고 time은 +1만함.
+2-2. 신발 썻는데 함정을 만나면 continue
+2-3. 함정을
+
+*/
 
 public class ProgrammersTreasure {
     static int rowLength;
@@ -10,11 +22,12 @@ public class ProgrammersTreasure {
     static int[][] map;
     static boolean[][] visited;
     static int[][] time;
+    static boolean[][] shoes;
+
 
     static int[] dr={-1,1,0,0,};
     static int[] dc={0,0,-1,1,};
 
-    static boolean shoes=false;
 
     static boolean isValid(int row,int col){
         return  row>=0&&row<rowLength&&col>=0&&col<colLength;
@@ -64,7 +77,11 @@ public class ProgrammersTreasure {
         colLength=m;
         map=new int[rowLength][colLength];
         visited=new boolean[rowLength][colLength];
+        shoes=new boolean[rowLength][colLength];
         time=new int[rowLength][colLength];
+
+
+
 
         // 지도에 함정 만들기.
         for(int i=0;i<holes.length;i++){
@@ -76,13 +93,7 @@ public class ProgrammersTreasure {
 
         answer=bfs(0,0);
 
-        if(shoes){
-            System.out.println(answer-1);
-//            return answer-1;
-        } else{
-            System.out.println(answer);
-//            return answer;
-        }
+
 
 
     }
