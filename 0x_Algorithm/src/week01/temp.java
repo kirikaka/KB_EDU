@@ -39,8 +39,8 @@ public class temp {
 
             if((cur=='[') || (cur=='{') || (cur=='(')){
                 System.out.println("개행");
-                if( closed.getLast()==close[idx]){
-                    System.out.println(closed.getLast()+ "  " + close[idx]);
+                if( closed.pop()==close[idx]){
+                    System.out.println(closed.pop()+ "  " + close[idx]);
                     System.out.println();
                     closed.pop();
                     System.out.println("pop하고 나서"+closed);
