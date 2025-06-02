@@ -23,6 +23,7 @@ public class Programmers_FarestNode {
 //
 //        dfs(0);
 //        distDFS[0] = 0;
+
         distBFS[0]=0;
 
         Queue<Integer> queue = new LinkedList<>();
