@@ -8,9 +8,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+
+// Web 설정 담당하는 ServletConfig
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.example.kbspring"})
+@ComponentScan(basePackages = {"org.example.kbspring.controller"})
 public class ServletConfig implements WebMvcConfigurer {
+    // web 관련 bean 등록
+    // @Controller,@RestController
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry

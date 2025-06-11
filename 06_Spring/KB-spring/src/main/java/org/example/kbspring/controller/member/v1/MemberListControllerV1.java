@@ -1,16 +1,12 @@
-package org.example.kbspring.controller.member;
+package org.example.kbspring.controller.member.v1;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.kbspring.domain.member.MemberEntity;
 import org.example.kbspring.dto.member.MemberDto;
-import org.example.kbspring.repository.member.MemberRepositoryV1;
 import org.example.kbspring.service.memeber.MemberServiceV1;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.lang.reflect.Member;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
