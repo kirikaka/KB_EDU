@@ -2,7 +2,7 @@ package org.example.kbspring.service.memeber;
 
 import org.example.kbspring.domain.member.MemberEntity;
 import org.example.kbspring.dto.member.MemberDto;
-import org.example.kbspring.repository.member.MemberRepositoryV0;
+import org.example.kbspring.repository.member.v1.MemberRepositoryV0;
 
 import java.util.ArrayList;
 import java.util.List;

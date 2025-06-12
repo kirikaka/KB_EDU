@@ -1,8 +1,7 @@
-package org.example.kbspring.repository.member;
+package org.example.kbspring.repository.member.v1;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.kbspring.domain.member.MemberEntity;
-import org.example.kbspring.service.memeber.MemberServiceV1;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

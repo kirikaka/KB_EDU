@@ -19,7 +19,12 @@
 <h3>V2</h3>
 <a href="/">HOME</a>
 <a href="/member/v2/list">Member List</a>
+<a href="/member/v2/list2">Two Members</a>
 <a href="/member/v2/add">Member Add</a>
+
+<h3>게시판 V1</h3>
+<a href="/">HOME</a>
+<a href="/post/v1/list">게시판</a>
 
 
 </body>

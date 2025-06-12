@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--어느 인터페이스의 추상메서드에 이걸 할당할 건지-->
+<mapper namespace="org.example.kbspring.mapper.PostMapper">
+    <select id="findAll" resultType="PostDto">
+        SELECT * FROM posts;
+    </select>
+
+    <delete  id="delete">
+        DELETE FROM posts WHERE id=#{id};
+    </delete>
+
+    <insert id="save">
+        INSERT INTO posts(title,content) values(#{title},#{content});
+    </insert>
+
+</mapper>

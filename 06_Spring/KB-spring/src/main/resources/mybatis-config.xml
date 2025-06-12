@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--  멤버엔티티 위치 어딨는지 알려줘야한다.-->
+    <typeAliases>
+<!--         type에 있는 객체를 Mybatis상에서 alias라고 부르겟다 -->
+        <typeAlias alias="MemberEntity"
+                   type="org.example.kbspring.domain.member.MemberEntity"/>
+        <typeAlias alias="PostDto"
+                   type="org.example.kbspring.dto.post.PostDto"/>
+    </typeAliases>
+
+</configuration>

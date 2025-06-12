@@ -1,0 +1,33 @@
+package org.example.kbspring.repository.member.v3;
+
+import org.example.kbspring.domain.member.MemberEntity;
+import org.example.kbspring.mapper.MemberMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public class MemberRepositoryV3 {
+    private final MemberMapper memberMapper;
+
+    @Autowired
+    public MemberRepositoryV3(MemberMapper memberMapper) {
+        this.memberMapper = memberMapper;
+    }
+
+    public List<MemberEntity> findAll() {
+        return memberMapper.findAll();
+    }
+    public List<MemberEntity> findTwo(){
+        return memberMapper.findTwo();
+    }
+
+
+    public void save(MemberEntity member) {
+
+    }
+
+
+
+}

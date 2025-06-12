@@ -39,6 +39,15 @@ public class MemberControllerV2 {
 
         return "member/list";
     }
+    @GetMapping("/list2")
+    public String memberList2(Model model){
+
+
+        List<MemberDto> memberList=memberService.getTwoMembers();
+        model.addAttribute("memberList",memberList);
+
+        return "member/list";
+    }
 
     @PostMapping("/add")
     public String addMember(@RequestParam("name") String name,

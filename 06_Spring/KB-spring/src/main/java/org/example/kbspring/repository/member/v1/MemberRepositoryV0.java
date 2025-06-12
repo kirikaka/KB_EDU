@@ -1,4 +1,4 @@
-package org.example.kbspring.repository.member;
+package org.example.kbspring.repository.member.v1;
 
 import org.example.kbspring.domain.member.MemberEntity;
 
