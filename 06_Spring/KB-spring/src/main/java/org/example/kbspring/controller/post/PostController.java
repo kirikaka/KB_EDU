@@ -64,6 +64,27 @@ public class PostController {
     }
 
 
+    @GetMapping("/compare")
+    public String compare(Model model){
+        log.info("---------------> Post Compare Calling","/post/v1/compare");
+        int count=10000;
+        postService.resetAndGeneratePosts(count);
+        long mySqlTime= postService.testMysqlReadTime(count);
+        long myRedisTime= postService.testRedisReadTime(count);
+
+        model.addAttribute("count",count);
+        model.addAttribute("mysqlTime",mySqlTime);
+        model.addAttribute("redisTime",myRedisTime);
+
+        return "post/v1/compare";
+
+
+
+    }
+
+
+
+
 
 
 
