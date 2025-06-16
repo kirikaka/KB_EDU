@@ -2,8 +2,6 @@ package org.example.kbspring.controller.post;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.kbspring.dto.post.PostDto;
-import org.example.kbspring.repository.post.PostRepository;
 import org.example.kbspring.service.post.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequiredArgsConstructor
@@ -51,6 +51,16 @@ public class PostController {
         log.info("title,content : "+title+" "+content);
         postService.save(title,content);
         return "redirect:/post/v1/list";
+    }
+
+    @GetMapping("/search")
+    public String postSearch(@RequestParam("title") String title,
+                             @RequestParam("content") String content,
+                             HttpServletRequest request,
+                             Model model){
+        log.info("---------------> Post Search Calling","/post/v1/search");
+        model.addAttribute("postList",postService.findByCond(title,content));
+        return "/post/v1/list";
     }
 
 

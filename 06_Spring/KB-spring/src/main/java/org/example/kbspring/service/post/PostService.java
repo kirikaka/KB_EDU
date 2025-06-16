@@ -22,6 +22,10 @@ public class PostService {
     public int save(String title, String content){
         return postRepository.save(title,content);
     }
+    public  List<PostDto> findByCond(String title,String content){
+
+        return postRepository.findByCond(title,content);
+    }
 
 
 

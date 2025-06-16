@@ -11,4 +11,6 @@ public interface PostMapper {
     List<PostDto> findAll();
     int delete(@Param("id") int id);
     int save(@Param("title") String title,@Param("content") String content);
+    List<PostDto> findByCond(@Param("title") String title,@Param("content") String content);
+
 }
