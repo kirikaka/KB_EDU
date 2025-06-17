@@ -68,6 +68,10 @@ dependencies {
   testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
   testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
   testImplementation 'javax.servlet:javax.servlet-api:4.0.1'
+
+  //Serialization(직렬화)
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.5'
+
 }
 
 test {
