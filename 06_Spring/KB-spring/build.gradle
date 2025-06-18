@@ -72,6 +72,10 @@ dependencies {
   //Serialization(직렬화)
   implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.5'
 
+  //Swagger
+  implementation 'io.springfox:springfox-swagger2:2.9.2'
+  implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+
 }
 
 test {

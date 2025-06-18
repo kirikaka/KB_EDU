@@ -1,8 +1,12 @@
 package org.example.kbspring.controller.post.v3;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.kbspring.dto.post.PostDto;
+import org.example.kbspring.dto.weather.WeatherDto;
 import org.example.kbspring.service.post.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+@Api(tags = "게시판 REST Controller")
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -26,6 +31,8 @@ public class RestPostControllerV3 {
      * @param model
      * @return
      */
+
+    @ApiOperation(value = "전체 게시글 조회",notes = "전체 게시글 조회 API")
     @GetMapping("/list")
     public ResponseEntity<List<PostDto>> list(HttpServletRequest request, Model model){
         log.info("-----------------> Post List Calling",request.getRequestURI());
@@ -42,8 +49,11 @@ public class RestPostControllerV3 {
     }
 
 
+    @ApiOperation(value = "게시글 삭제",notes = "게시글 삭제 API")
     @PostMapping(value = "/delete",produces = "text/plain;charset=UTF-8")
-    public ResponseEntity<String> delete(@RequestParam("id") int id){
+    public ResponseEntity<String> delete(
+            @ApiParam(value = "게시글 ID",required = true,example = "1")
+            @RequestParam("id") int id){
 
         try{
             int affectedRows=postService.delete(id);
@@ -109,6 +119,11 @@ public class RestPostControllerV3 {
 
 
     }
+
+
+
+
+
 
 
 
