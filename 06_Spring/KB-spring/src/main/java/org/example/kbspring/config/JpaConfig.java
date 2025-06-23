@@ -19,7 +19,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement        //ORM 계층에서 실행되다 오류 생기면 ROLLBACK이 되므로.
 @PropertySource("classpath:application.properties")
-@EnableJpaRepositories(basePackages = "org.example.kbspring.domain")
+@EnableJpaRepositories(basePackages = {"org.example.kbspring.domain", "org.example.kbspring.repository"})
 public class JpaConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {

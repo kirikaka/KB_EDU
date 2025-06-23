@@ -1,5 +1,6 @@
 package org.example.kbspring.config;
 
+import org.example.kbspring.security.config.SecurityConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -15,7 +16,8 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
         return new Class[]{
                 RootConfig.class,
                 RedisConfig.class,
-                JpaConfig.class
+                JpaConfig.class,
+                SecurityConfig.class
         };
     }
 
