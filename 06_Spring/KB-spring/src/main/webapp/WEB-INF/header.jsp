@@ -35,5 +35,17 @@
 <a href="/">HOME</a>
 <a href="/post/v2/list">REST API</a>
 
+
+<h3>Security V1</h3>
+<a href="/">HOME</a>
+<a href="/user/register">회원가입</a>
+<a href="/user/login">로그인</a>
+<a href="/admin">admin</a>
+<a href="/member">member</a>
+
+<a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a>
+<form id="logout-form" action="/user/logout" method="post" style="display: none;">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
 </body>
 </html>

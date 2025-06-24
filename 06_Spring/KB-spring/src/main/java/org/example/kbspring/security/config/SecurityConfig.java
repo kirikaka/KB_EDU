@@ -40,15 +40,14 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .loginPage("/user/login")
                 .loginProcessingUrl("/user/login")
                 .defaultSuccessUrl("/user/login-success")
-                .failureUrl("/user/login-failed");
+                .failureUrl("/user/login-failure");
 
-
-
-
-
-
-
-
+        http.logout()
+                .logoutUrl("/user/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("remember-me","JSESSIONID")
+                .logoutSuccessUrl("/user/login")
+                .permitAll();
 
     }
 
