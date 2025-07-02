@@ -1,0 +1,221 @@
+-- -----------------------------------------
+-- 	SQL문제 1번
+-- -----------------------------------------
+-- 1-1
+
+select * from city;
+
+-- 1-2
+select language,percentage from countrylanguage where countrycode='che'
+
+-- 1-3
+insert into city( name,countrycode,district,population ) values ('Cairo','EGY','Cairo Governorate',9500000);
+
+
+-- 1-4
+update city set name='GoodSite' where countrycode='png';
+-- 1-5
+
+select * from country order by name desc;
+
+-- -----------------------------------------
+-- 	SQL문제 2번
+-- -----------------------------------------
+-- 2-1
+select upper(name) from city ;
+
+
+-- 2-2
+select concat_ws('-',id,countrycode) from city;
+
+-- 2-3
+select length(district) from city;
+
+
+-- 2-4
+select avg(population) from city;
+
+
+-- 2-5
+select continent,max(gnp) from country group by continent having max(gnp) order by max(gnp) desc;
+
+
+-- -----------------------------------------
+-- 	SQL문제 3번
+-- -----------------------------------------
+-- 3-1
+select city.name, country.name from city inner join country on city.countrycode=country.code;
+
+
+-- 3-2
+
+select country.name, countrylanguage.language from country left outer join countrylanguage on country.code=countrylanguage.countrycode;
+
+
+-- 3-3
+select name from city where population = (select max(population) from city);
+
+
+-- -----------------------------------------
+-- 	JDBC문제 4번
+-- -----------------------------------------
+-- 4-1
+
+package org.scoula.module2.domain;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+//문제 4-1.
+// VO 객체로 사용할 City를 완성하세요.
+// Lombok 어노테이션 설정
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class City {
+    private int id;
+    private String name;
+    private String countryCode;
+    private String district;
+    private int population;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+}
+
+-- 4-2
+    public void insert(City city) {
+        //SQL문 완성
+        String sql = "insert into city (name,countrycode,district,population) values (?,?,?,?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, city.getName());
+            pstmt.setString(2, city.getCountryCode());
+            pstmt.setString(3, city.getDistrict());
+            pstmt.setInt(4, city.getPopulation());
+            int count = pstmt.executeUpdate();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+
+    } //insert기능 구현
+
+-- -----------------------------------------
+-- 	JDBC문제 5번
+-- -----------------------------------------
+-- 5-1
+    public City map(ResultSet rs) throws SQLException {
+        return City.builder()
+                .id(rs.getInt("id"))
+                .name(rs.getString("name"))
+                .countryCode(rs.getString("countrycode"))
+                .district(rs.getString("district"))
+                .population(rs.getInt("population"))
+                .build();
+    }
+
+
+    public List<City> selectList(int size) {
+        String sql = "SELECT * FROM city ORDER BY population DESC LIMIT ?";
+        List<City> cityList = new ArrayList<>();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, size);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    City city = map(rs);
+                    cityList.add(city);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return cityList;
+
+    }
+
+-- 5-2
+    public void printCity(City city) {
+        System.out.printf("아이디>> %d, 국가코드>> %s,    지역명>> %s,    인구수>> %d "
+                , city.getId(), city.getCountryCode(), city.getDistrict(), city.getPopulation());
+        System.out.println();
+    }
+
+-- -----------------------------------------
+-- 	JDBC문제 6번
+-- -----------------------------------------
+-- 6-1
+
+public City selectOne(int id) {
+        String sql = "SELECT * FROM city where ID= ?";
+        City city = null;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                city = map(rs);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return city;
+
+    }
+-- 6-2
+    public void showOne() {
+        System.out.print("추출할 도시 ID>>  ");
+        int id = sc.nextInt();
+
+        City city = cityDao.selectOne(id);
+
+        printCity(city);
+
+
+    }
