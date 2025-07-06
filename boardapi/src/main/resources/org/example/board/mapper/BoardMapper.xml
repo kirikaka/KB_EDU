@@ -68,7 +68,7 @@
         <result column="a_reg_date"  property="regDate"/>
     </resultMap>
 
-    <resultMap id="boardMap" type="org.scoula.board.domain.BoardVO">
+    <resultMap id="boardMap" type="org.example.board.domain.BoardVO">
         <id column="no"              property="no"/>
         <result column="title"       property="title"/>
         <result column="content"     property="content"/>

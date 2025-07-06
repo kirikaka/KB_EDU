@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.example.controller","org.scoula.exception","org.example.ex03.controller","org.example.board.controller"})
+@ComponentScan(basePackages = {"org.example.controller","org.example.controller","org.example.board.controller"})
 public class ServletConfig implements WebMvcConfigurer {
     @Bean
     public MultipartResolver multipartResolver() {
@@ -24,9 +24,19 @@ public class ServletConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("/resources/**")
+        registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/");
+
+// Swagger UI 리소스를 위한 핸들러 설정
+        registry.addResourceHandler("/swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+// Swagger WebJar 리소스 설정
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/"); // Swagger 리소스 설정
+        registry.addResourceHandler("/swagger-resources/**")
+                .addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/v2/api-docs")
+                .addResourceLocations("classpath:/META-INF/resources/");
     }
 
     // jsp view resolver 설정
@@ -38,4 +48,5 @@ public class ServletConfig implements WebMvcConfigurer {
         bean.setSuffix(".jsp");
         registry.viewResolver(bean);
     }
+
 }

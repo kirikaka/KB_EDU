@@ -1,9 +1,9 @@
 package org.example.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.ex03.dto.SampleDTO;
-import org.example.ex03.dto.SampleDTOList;
-import org.example.ex03.dto.TodoDTO;
+import org.example.dto.SampleDTO;
+import org.example.dto.SampleDTOList;
+import org.example.dto.TodoDTO;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

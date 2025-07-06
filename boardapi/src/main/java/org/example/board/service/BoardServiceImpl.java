@@ -40,7 +40,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Transactional
     @Override
-    public void create(BoardDTO board) {
+    public BoardDTO create(BoardDTO board) {
         BoardVO vo=board.toVo();
         mapper.create(vo);
         board.setNo(vo.getNo());
@@ -48,16 +48,21 @@ public class BoardServiceImpl implements BoardService {
         if(files != null && !files.isEmpty()) { // 첨부 파일이 있는  경우
             upload(vo.getNo(), files);
         }
+
+        return get(vo.getNo());
     }
 
     @Override
-    public boolean update(BoardDTO board) {
-        return mapper.update(board.toVo())==1;
+    public BoardDTO update(BoardDTO board) {
+        mapper.update(board.toVo());
+        return get(board.getNo());
     }
 
     @Override
-    public boolean delete(Long no) {
-        return mapper.delete(no)==1;
+    public BoardDTO delete(Long no) {
+        BoardDTO board=get(no);
+        mapper.delete(no);
+        return board;
     }
 
     private void upload(Long bno, List<MultipartFile> files) {

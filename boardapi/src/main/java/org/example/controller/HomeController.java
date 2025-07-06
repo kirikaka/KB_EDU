@@ -12,8 +12,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model ){
 //        model.addAttribute("name", "홍길동");
-//        log.info("=================> HomeController");
-//        return "index";
-        return "redirect:/board/list";
+        log.info("=================> HomeController");
+        return "index";
     }
 }
