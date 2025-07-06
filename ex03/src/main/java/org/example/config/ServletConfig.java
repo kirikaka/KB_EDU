@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.example.controller","org.scoula.exception","org.example.ex03.controller"})
+@ComponentScan(basePackages = {"org.example.controller","org.scoula.exception","org.example.ex03.controller","org.example.board.controller"})
 public class ServletConfig implements WebMvcConfigurer {
     @Bean
     public MultipartResolver multipartResolver() {
