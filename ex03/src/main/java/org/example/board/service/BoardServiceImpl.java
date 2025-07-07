@@ -17,14 +17,15 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static java.util.List.of;
-import static org.example.common.util.UploadFiles.upload;
 
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
+
     final private BoardMapper mapper;
+
     private final static String BASE_DIR = "c:/upload";
 
     @Override
