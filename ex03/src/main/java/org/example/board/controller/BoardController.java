@@ -34,6 +34,7 @@ public class BoardController {
     public void create(Model model) {
         log.info("create");
     }
+
     @PostMapping("/create")
     public String create(BoardDTO board){
         log.info("create"+board);
