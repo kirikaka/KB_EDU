@@ -1,5 +1,6 @@
 package org.example.config;
 
+import org.example.security.config.SecurityConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -20,6 +21,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
     protected Class<?>[] getRootConfigClasses() {
         return new Class[]{
                 RootConfig.class
+                , SecurityConfig.class
         };
     }
 

@@ -25,7 +25,7 @@ public class BoardDTO {
     private Date regDate;
     private Date updateDate;
     private List<BoardAttachmentVO> attaches;
-    List<MultipartFile> files=new ArrayList<MultipartFile>();
+    List<MultipartFile> files=new ArrayList<>();
 
     public static BoardDTO of(BoardVO vo) {
         return vo==null?null:BoardDTO.builder()

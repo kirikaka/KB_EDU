@@ -8,7 +8,8 @@
     </settings>
     
     <typeAliases>
-        <package name="org.example.board.domain"/>
+<!--        <package name="org.example.board.domain"/>-->
+        <package name="org.example.security.account.domain" />
     </typeAliases>
     
 </configuration>
